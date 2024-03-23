@@ -49,7 +49,7 @@ function parser:ReadInt()
     return int
 end
 
---- Reads a 64-bit double from the bytecode. | Used for finding the number constant.
+--- Reads a 64-bit double from the bytecode.
 --- @return number double The double read from the bytecode.
 function parser:ReadDouble()
     local lowInt = self:ReadInt()
@@ -63,11 +63,11 @@ function parser:ReadDouble()
     return double
 end
 
---- Reads a string from the bytecode.
+--- Reads a string with a specific size from the bytecode
 --- @return string str The string read from the bytecode.
 function parser:ReadString()
-    local length = self:ReadInt()
-    local str = self:ReadBytes(length)
+    local size = self:ReadInt()
+    local str = self:ReadBytes(size)
 
     return str
 end

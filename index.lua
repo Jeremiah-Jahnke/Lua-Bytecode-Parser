@@ -80,11 +80,13 @@ local function parseConstants()
         if type == 3 then
             table.insert(parsedData.constants, {
                 type = type,
+                typename = constants[type],
                 value = parser:ReadDouble()
             })
         elseif type == 4 then
             table.insert(parsedData.constants, {
                 type = type,
+                typename = constants[type],
                 value = parser:ReadString()
             })
         end
@@ -139,9 +141,9 @@ local function prettyPrint()
     end
 
     printSeparator("Constants")
-    print("\27[34mType    Value\27[0m")
+    print("\27[34mType   Name    Value\27[0m")
     for _, entry in ipairs(parsedData.constants) do
-        print("\27[33m" .. string.format("%-8s%-12s", entry.type, entry.value) .. "\27[0m")
+        print("\27[33m" .. string.format("%-7s%-8s%-6s", entry.type, entry.typename, entry.value) .. "\27[0m")
     end
 
     printSeparator("Prototypes")

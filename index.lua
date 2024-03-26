@@ -119,20 +119,6 @@ local function printSeparator(title)
     print(string.rep("-", 40))
 end
 
-local function printData(data)
-    print("\27[34mOpcode    Mnemonic    A    B    C\27[0m")
-    for _, entry in ipairs(data) do
-        print("\27[33m" .. string.format("%-10s%-12s%-5s%-5s%-6s", entry.opcode, entry.mnemonic, entry.a, entry.b, entry.c) .. "\27[0m")
-    end
-end
-
-local function printDataKst(data)
-    print("\27[34mType    Value\27[0m")
-    for _, entry in ipairs(data) do
-        print("\27[33m" .. string.format("%-8s%-12s", entry.type, entry.value) .. "\27[0m")
-    end
-end
-
 local function prettyPrint()
     printSeparator("Header")
     local headerOrder = {"signature", "version", "format", "endianness", "intSize", "size_tSize", "instructionSize", "luaNumberSize", "integralFlag"}
@@ -147,10 +133,16 @@ local function prettyPrint()
     end
 
     printSeparator("Instructions")
-    printData(parsedData.instructions)
+    print("\27[34mOpcode    Mnemonic    A    B    C\27[0m")
+    for _, entry in ipairs(parsedData.instructions) do
+        print("\27[33m" .. string.format("%-10s%-12s%-5s%-5s%-6s", entry.opcode, entry.mnemonic, entry.a, entry.b, entry.c) .. "\27[0m")
+    end
 
     printSeparator("Constants")
-    printDataKst(parsedData.constants)
+    print("\27[34mType    Value\27[0m")
+    for _, entry in ipairs(parsedData.constants) do
+        print("\27[33m" .. string.format("%-8s%-12s", entry.type, entry.value) .. "\27[0m")
+    end
 
     printSeparator("Prototypes")
     for _, entry in ipairs(parsedData.prototypes) do

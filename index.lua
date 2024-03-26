@@ -125,23 +125,23 @@ local function prettyPrint()
     printSeparator("Header")
     local headerOrder = {"signature", "version", "format", "endianness", "intSize", "size_tSize", "instructionSize", "luaNumberSize", "integralFlag"}
     for _, key in ipairs(headerOrder) do
-        print("\27[34m" .. string.format("%-16s%s", key, parsedData.header[key]) .. "\27[0m")
+        print("\27[36m" .. string.format("%-16s%s", key, parsedData.header[key]) .. "\27[0m")
     end
 
     printSeparator("Function Block")
     local functionBlockOrder = {"source", "lineDefined", "lastLineDefined", "numUpvalues", "numParameters", "isVararg", "maxStackSize"}
     for _, key in ipairs(functionBlockOrder) do
-        print("\27[34m" .. string.format("%-16s%s", key, parsedData.functionBlock[key]) .. "\27[0m")
+        print("\27[36m" .. string.format("%-16s%s", key, parsedData.functionBlock[key]) .. "\27[0m")
     end
 
     printSeparator("Instructions")
-    print("\27[34mOpcode    Mnemonic    A    B    C\27[0m")
+    print("\27[36mOpcode    Mnemonic    A    B    C\27[0m")
     for _, entry in ipairs(parsedData.instructions) do
         print("\27[33m" .. string.format("%-10s%-12s%-5s%-5s%-6s", entry.opcode, entry.mnemonic, entry.a, entry.b, entry.c) .. "\27[0m")
     end
 
     printSeparator("Constants")
-    print("\27[34mType   Name    Value\27[0m")
+    print("\27[36mType   Name    Value\27[0m")
     for _, entry in ipairs(parsedData.constants) do
         print("\27[33m" .. string.format("%-7s%-8s%-6s", entry.type, entry.typename, entry.value) .. "\27[0m")
     end
@@ -149,7 +149,7 @@ local function prettyPrint()
     printSeparator("Prototypes")
     for _, entry in ipairs(parsedData.prototypes) do
         for key, value in pairs(entry) do
-            print("\27[34m" .. string.format("%-16s%s", key, value) .. "\27[0m")
+            print("\27[36m" .. string.format("%-16s%s", key, value) .. "\27[0m")
         end
     end
 end

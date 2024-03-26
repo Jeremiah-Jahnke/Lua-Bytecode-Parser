@@ -149,7 +149,7 @@ local function prettyPrint()
     printSeparator("Prototypes")
     for _, entry in ipairs(parsedData.prototypes) do
         for key, value in pairs(entry) do
-            print("\27[34m" .. key .. "\t" .. value .. "\27[0m")
+            print("\27[34m" .. string.format("%-16s%s", key, value) .. "\27[0m")
         end
     end
 end
